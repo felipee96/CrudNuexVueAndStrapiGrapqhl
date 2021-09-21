@@ -1,0 +1,18 @@
+query($id:ID!){
+  receta(id:$id){
+    id
+    nombre
+    duracion
+    servicios
+    imagen
+    descripcion
+    ingredientes
+    pasos
+    likes
+    categoria{
+      id
+      nombre
+      slug
+    }
+  }
+}

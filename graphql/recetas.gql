@@ -1,0 +1,13 @@
+query($slug:String!){
+  recetas(where:{categoria:{slug:$slug}}){
+    id
+    nombre
+    likes
+    imagen
+    categoria{
+      id
+      nombre
+      slug
+    }
+  }
+}

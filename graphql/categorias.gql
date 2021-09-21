@@ -1,0 +1,11 @@
+query{
+  categorias{
+    id
+    nombre
+    icono
+    slug
+    imagen
+    descripcion
+    slug
+  }
+}
