@@ -3,13 +3,17 @@ import error from "../layouts/error";
 
 export const state = () => ({
   counter: 0,
-  categorias: []
+  categorias: [],
+  recetasCargadas:[]
 })
 
 /*Sirve para la leer la informacion del state*/
 export const getters = {
   readCategorias(state) {
     return state.categorias
+  },
+  readRecetasCargadas(state){
+    return state.recetasCargadas
   },
   readCounter(state) {
     return state.counter
@@ -20,6 +24,9 @@ export const getters = {
 export const mutations = {
   addCategorias(state, payload) {
     state.categorias = payload
+  },
+  addRecetasCargadas(state, payload){
+    state.recetasCargadas = payload
   },
   increment(state) {
     state.counter++
@@ -39,6 +46,9 @@ export const actions = {
       commit('addCategorias',
         data.data.categorias
       )
+      /*commit('addRecetasCargadas',
+        data.data.recetas
+      )*/
       //resolve()
     }).catch(error => {
       console.log(error)
@@ -46,6 +56,19 @@ export const actions = {
     })
     //})
 
+  },
+  buscarReceta({commit}, payload){
+    let cliente = this.app.apolloProvider.defaultClient
+    const query = {
+      query:require("../graphql/buscarReceta.gql"),
+      variables:{termino:payload}
+    }
+    cliente.query(query).then(data=>{
+      console.log(data)
+      commit('addRecetasCargadas',
+        data.data.recetas
+      )
+    }).catch(e => console.log(e))
   },
   increment(context) {
     setTimeout(() => {

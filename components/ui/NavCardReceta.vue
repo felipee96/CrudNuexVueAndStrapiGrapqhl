@@ -7,6 +7,7 @@
       <v-row>
         <v-col cols="7">
           <h3>{{ receta.nombre }}</h3>
+          {{ receta.autor.username }}
         </v-col>
         <v-col cols="5" class="d-flex justify-end">
           <div>

@@ -17,12 +17,12 @@
 
             <v-chip color="primary" outlined>
               <v-icon left>mdi-clock</v-icon>
-              Tiempo: {{ receta.duracion }}
+              Tiempo: {{ formatedTime }}
             </v-chip>
 
             <v-chip color="primary" outlined>
               <v-icon left>mdi-account-edit</v-icon>
-              Autor: cualquiera
+              Autor: {{receta.autor.username}}
             </v-chip>
             <v-divider class="my-3"></v-divider>
             <h4 class="body-1">Descripción</h4>
@@ -73,6 +73,13 @@
 
 <script>
 export default {
+  computed:{
+    formatedTime(){
+      let horas = Math.floor(this.receta.duracion / 60)
+      let minutos = this.receta.duracion % 60
+      return  ("0"+horas).slice(-2) + ":" + ("0"+minutos).slice(-2)
+    }
+  },
   async asyncData({app, route}) {
     const client = app.apolloProvider.defaultClient
     const id = route.params.receta

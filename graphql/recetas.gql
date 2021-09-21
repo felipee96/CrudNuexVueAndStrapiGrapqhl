@@ -9,5 +9,8 @@ query($slug:String!){
       nombre
       slug
     }
+    autor{
+      username
+    }
   }
 }

@@ -1,0 +1,10 @@
+query($id:ID!){
+  recetas(where:{autor:$id}){
+    id
+    nombre
+    categoria{
+      id
+      nombre
+    }
+  }
+}
